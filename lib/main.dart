@@ -42,6 +42,20 @@ class _HomePageState extends State<HomePage> {
     {"icon": Icons.send, "title": "Transfer"},
   ];
 
+  String getGreeting() {
+  final hour = DateTime.now().hour;
+
+  if (hour >= 0 && hour < 12) {
+    return "Selamat Pagi";
+  } else if (hour >= 12 && hour < 15) {
+    return "Selamat Siang";
+  } else if (hour >= 15 && hour < 18) {
+    return "Selamat Sore";
+  } else {
+    return "Selamat Malam";
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -263,6 +277,43 @@ class _HomePageState extends State<HomePage> {
                             ]
                           ),
                         ),
+
+                        SizedBox(height: 16),
+
+                        // GRID MENU
+                        GridView.builder(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16),
+                          shrinkWrap: true,
+                          physics:
+                              NeverScrollableScrollPhysics(),
+                          itemCount: gridMenu.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                          ),
+                          itemBuilder: (context, index) {
+                            final item = gridMenu[index];
+                            return Column(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  child: Icon(item['icon']),
+                                ),
+                                SizedBox(height: 5),
+                                Text(item['title'],
+                                    style: TextStyle(
+                                        fontSize: 12
+                                      )
+                                )
+                              ],
+                            );
+                          },
+                        ),
+
+                          SizedBox(height: 85),
+                        
                       ]
                     )
                   )
@@ -270,6 +321,43 @@ class _HomePageState extends State<HomePage> {
 
               ]
             )
+          ),
+
+          // bottom navigation
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: BottomNavigationBar(
+              currentIndex: selectedIndex,
+              onTap: (index) {
+                setState(() {
+                  selectedIndex = index;
+                });
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      ["Home", "Mutasi", "QR", "Aktivitas", "Akun"]
+                          [index],
+                    ),
+                  ),
+                );
+              },
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: Colors.blue,
+              unselectedItemColor: Colors.grey,
+              items: [
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home), label: "Home"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.history), label: "Mutasi"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.qr_code), label: "QR"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.mail), label: "Aktivitas"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.person), label: "Akun"),
+              ],
+            ),
           )
         ]
       )

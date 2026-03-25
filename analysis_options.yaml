@@ -9,7 +9,11 @@
 # packages, and plugins designed to encourage good coding practices.
 analyzer:
   errors:
+    dead_code: ignore
     depend_on_referenced_packages: ignore
+    empty_statements: ignore
+    no_leading_underscores_for_local_identifiers: ignore
+    sort_child_properties_last: ignore
     unnecessary_import: ignore
     unused_import: ignore
     unused_local_variable: ignore
