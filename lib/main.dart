@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//home page
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -48,7 +49,8 @@ class _HomePageState extends State<HomePage> {
 
       body: Stack(
         children: [
-  
+
+          //header
           Container(
             height: 180,
             decoration: BoxDecoration(
@@ -94,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 SizedBox(height: 20),
-
+              //body
                Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -192,6 +194,75 @@ class _HomePageState extends State<HomePage> {
                         ),
 
                         SizedBox(height: 16),
+
+                        /// PROMO BRIMO
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 16),
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.blue,
+                                Colors.lightBlue
+                              ],
+                            ),
+                            borderRadius:
+                                BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Promo BRImo",
+                                  style: TextStyle(
+                                      color: Colors.white)),
+                              Text("BRI",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight:
+                                          FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 16),
+
+                        /// ===== SEARCH =====
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    hintText: "Cari Fitur",
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    prefixIcon:
+                                        Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(
+                                              30),
+                                      borderSide:
+                                          BorderSide.none,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              ElevatedButton(
+                                onPressed: () {},
+                                child: Text("Atur"),
+                                style: ElevatedButton.styleFrom(
+                                  shape: StadiumBorder(),
+                                ),
+                              )
+                            ]
+                          ),
+                        ),
                       ]
                     )
                   )
